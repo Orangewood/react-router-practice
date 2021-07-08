@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "antd/dist/antd.css";
+import { useEffect } from "react";
+import { useState } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import Nav from "./Components/Nav";
+import Login from "./Pages/Login";
+import Main from "./Pages/Home";
 
-function App() {
+export default function App() {
+  const [wat, setWat] = useState<boolean>();
+
+  useEffect(() => {
+    console.log(wat);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <Route path='/' exact component={Login}></Route>
+      <Route path='/home' component={Main}></Route>
+    </BrowserRouter>
   );
 }
-
-export default App;
